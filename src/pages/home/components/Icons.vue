@@ -1,6 +1,6 @@
 <template>
 <div class="icons">
-  <swiper>
+  <swiper :options="swiperOption">
   <swiper-slide v-for="(page,index) of pages" :key="index">
   <div class="icon"  v-for="item of page" :key="item.id">
     <div class='icon-img'>
@@ -16,83 +16,20 @@
 <script>
 export default {
   name: 'HomeIcons',
+  props: {
+    list: Array
+  },
   data () {
     return {
-      iconList: [{
-        id: '0001',
-        imgUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2835524515,3980932591&fm=27&gp=0.jpg',
-        desc: '景点门票'
-      }, {
-        id: '0002',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1068465475,257788198&fm=202&mola=new&crop=v1',
-        desc: '滑雪季'
-      }, {
-        id: '0003',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=3942084052,3894543838&fm=202&mola=new&crop=v1',
-        desc: '泡温泉'
-      }, {
-        id: '0004',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1409037549,3978854282&fm=202&mola=new&crop=v1',
-        desc: '动物植物园'
-      }, {
-        id: '0005',
-        imgUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2835524515,3980932591&fm=27&gp=0.jpg',
-        desc: '景点门票'
-      }, {
-        id: '0006',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1068465475,257788198&fm=202&mola=new&crop=v1',
-        desc: '滑雪季'
-      }, {
-        id: '0007',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=3942084052,3894543838&fm=202&mola=new&crop=v1',
-        desc: '泡温泉'
-      }, {
-        id: '0008',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1409037549,3978854282&fm=202&mola=new&crop=v1',
-        desc: '动物植物园'
-      }, {
-        id: '0009',
-        imgUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2835524515,3980932591&fm=27&gp=0.jpg',
-        desc: '景点门票'
-      }, {
-        id: '0010',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1068465475,257788198&fm=202&mola=new&crop=v1',
-        desc: '滑雪季'
-      }, {
-        id: '0011',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=3942084052,3894543838&fm=202&mola=new&crop=v1',
-        desc: '泡温泉'
-      }, {
-        id: '0012',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1409037549,3978854282&fm=202&mola=new&crop=v1',
-        desc: '动物植物园'
-      }, {
-        id: '0013',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1409037549,3978854282&fm=202&mola=new&crop=v1',
-        desc: '动物植物园'
-      }, {
-        id: '0014',
-        imgUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2835524515,3980932591&fm=27&gp=0.jpg',
-        desc: '景点门票'
-      }, {
-        id: '0015',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1068465475,257788198&fm=202&mola=new&crop=v1',
-        desc: '滑雪季'
-      }, {
-        id: '0016',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=3942084052,3894543838&fm=202&mola=new&crop=v1',
-        desc: '泡温泉'
-      }, {
-        id: '0017',
-        imgUrl: 'https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=1409037549,3978854282&fm=202&mola=new&crop=v1',
-        desc: '动物植物园'
-      }]
+      swiperOption: {
+        autoplay: false
+      }
     }
   },
   computed: {
     pages () {
       const pages = []
-      this.iconList.forEach((item, index) => {
+      this.list.forEach((item, index) => {
         const page = Math.floor(index / 8)
         if (!pages[page]) {
           pages[page] = []
